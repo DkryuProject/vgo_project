@@ -1,0 +1,20 @@
+ion-thumbnail {
+  min-width: 7rem;
+  min-height: 7rem;
+  text-align: center;
+
+  img {
+    max-width: 7rem;
+    min-width: 7rem;
+  }
+}
+
+ion-grid {
+
+}
+
+ion-card {
+  height: 100%;
+  margin: 5px;
+  text-align: center;
+}

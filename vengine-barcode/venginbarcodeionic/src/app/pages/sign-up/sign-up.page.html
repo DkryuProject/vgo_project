@@ -1,0 +1,30 @@
+<ion-content>
+  <div class="signup-container">
+    <div class="signup-content">
+      <h1 class="signup-title">Signup</h1>
+      <form (ngSubmit)="signUp()">
+        <div class="form-item">
+          <input type="text" name="name" class="form-control" placeholder="name" [(ngModel)]="user.name" required />
+        </div>
+        <div class="form-item">
+          <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" required />
+        </div>
+        <div class="form-item">
+          <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required />
+        </div>
+        <div class="form-item">
+          <button type="submit" class="btn btn-block btn-primary">Sign Up</button>
+        </div>
+      </form>
+      <div class="or-separator">
+        <span class="or-text">OR</span>
+      </div>
+      <div class="social-login">
+        <a class="btn btn-block social-btn google" href="http://localhost:5000/oauth2/authorize/google?redirect_uri=http://localhost:8101/oauth2signupcallback">
+          <img src="../assets/google-logo.png" alt="Google" /> Log in with Google
+        </a>
+      </div>
+      <span class="login-link">Already have an account? <font color="blue" (click)="movePage()">Login!</font></span>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,152 @@
+.App {
+    background: #ffffff;
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ant-table .ant-table-thead .ant-table-cell {
+    text-align: center;
+}
+
+table .ant-table-cell .editable-cell-value-wrap {
+    /* min-height: 28px; */
+    height: 24px;
+}
+
+.ant-table.ant-table-small .ant-table-title {
+    background-color: #ffffff;
+}
+
+.ant-table.ant-table-small .ant-table-footer,
+/* .ant-table.ant-table-small .ant-table-thead > tr > th {
+    color: white;
+    border-width: 0.3px;
+    border-color: white;
+    border-style: solid;
+} */
+
+.ant-table.ant-table-small tfoot > tr > th,
+.ant-table.ant-table-small tfoot > tr > td {
+    padding-bottom: 10px;
+    background-color: #ffffff;
+}
+
+.ant-select-selector {
+    background-color: #ffffff;
+}
+
+.ant-form-item-control-input-content input {
+    background-color: #ffffff;
+}
+
+.modalWrap .ant-select-selector > span {
+    border-bottom: 1px solid lightgray;
+    border-radius: 0px;
+    font-size: 0.625rem;
+}
+
+.modalWrap .ant-form-item-required {
+    font-weight: 600;
+    font-size: 0.6875rem;
+}
+
+.modalWrap .title {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 0.6875rem;
+}
+
+.ant-popover-content .ant-popover-inner {
+    border: 3px solid #b3d5d6;
+}
+
+.ant-popover-content .ant-popover-inner .ant-popover-title {
+    font-weight: 600;
+    font-size: 0.6875rem;
+    border-color: #b3d5d6;
+}
+
+.ant-popover-inner-content .issuesWrap {
+    display: flex;
+    font-size: 0.6875rem;
+}
+
+.ant-popover-inner-content .issuesWrap .issue {
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.ant-popover-inner-content .issuesWrap .issue:nth-child(2) {
+    border-right: 1px solid #b3d5d6;
+    border-left: 1px solid #b3d5d6;
+}
+
+/* table .ant-table-cell .editable-cell-value-wrap {
+    min-height: 32px;
+}
+
+.ant-select-dropdown {
+    z-index: 900 !important;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+    color: inherit;
+    border-bottom: 2px solid transparent;
+}
+
+.ant-menu-item:hover,
+.ant-menu-item-active,
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-title:hover {
+    color: inherit;
+}
+
+.ant-menu-horizontal {
+    border-bottom: 0;
+}
+
+.ant-drawer {
+    z-index: 899;
+} */

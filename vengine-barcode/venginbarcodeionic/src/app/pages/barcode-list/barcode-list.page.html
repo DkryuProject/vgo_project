@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{companyName}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let barcode of barcodeData; let i = index">
+      <ion-label>
+        <h2>{{barcode.barcodeText}}</h2>
+        <h3 *ngIf="barcode.location">Location: {{barcode.location.description}}</h3>
+        <h3>Date: {{barcode.insertDate | date:'yyyy-MM-dd HH:mm:ss'}}</h3>
+        <h3>Qty: {{barcode.packingQuantity}}{{barcode.packingMeasurement}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,13 @@
+ion-grid {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+ion-card {
+  height: 100%;
+  margin: 15px;
+  --color:white;
+}

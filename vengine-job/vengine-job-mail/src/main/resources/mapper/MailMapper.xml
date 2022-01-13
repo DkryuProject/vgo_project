@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vgo.mail.mapper.MailMapper">
+    <select id="searchSendMailList" resultType="vgo.mail.dto.MailDto">
+        select
+            id, email, send_type as type, status, type_idx as idx
+        from user_mail_send ums
+        where ums.status != 1
+        order by created_at desc
+        limit 5
+    </select>
+
+    <update id="updateMail" parameterType="vgo.mail.dto.MailDto">
+        update user_mail_send
+               set status= #{status}
+                      ,updated_at=now()
+                    <if test="status == 1">
+                      ,send_date = now()
+                    </if>
+        where id=#{id}
+    </update>
+
+    <select id="searchCompany" resultType="vgo.mail.dto.CompanyDto">
+        select `name`
+        from user_company_pending ucp
+        where ucp.id = #{id}
+    </select>
+
+    <select id="searchUser" resultType="vgo.mail.dto.UserDto">
+        select
+            ui.id, ui.email, ui.secret_key as secretKey, uc.name as company, uc2.name as registerCompany,
+            ui.full_name as userName, password
+        from user_info ui
+        inner join user_company uc
+        on ui.comp_id = uc.id
+        left outer join user_company_address uca
+        on ui.comp_id = uca.comp_info_id and uca.representive=1
+        left outer join user_company uc2
+        on uca.comp_id = uc2.id
+        where ui.id = #{userID}
+        limit 1
+    </select>
+
+    <select id="searchMaterialInfo" resultType="vgo.mail.dto.MaterialDto">
+        select
+             mi.name
+            ,uc.name as companyName
+            ,uc2.name as userCompanyName
+        from material_info mi
+        inner join user_company uc
+        on mi.supplier_comp_id = uc.id
+        inner join user_company uc2
+        on mi.comp_id = uc2.id
+        where mi.id = #{materialInfoID}
+    </select>
+
+    <select id="searchOrderInfo" resultType="vgo.mail.dto.OrderDto">
+        select
+             mi.material_purchase_order_number as poNumber
+            ,uc.name as companyName
+            ,uc2.name as userCompanyName
+        from mcl_material_purchase_order mi
+        inner join user_company uc
+        on mi.material_selling_comp_id = uc.id
+        inner join user_company uc2
+        on mi.comp_id = uc2.id
+        where mi.id = #{orderID}
+    </select>
+
+    <select id="searchAdhocOrderInfo" resultType="vgo.mail.dto.OrderDto">
+        select
+             mi.material_purchase_order_number as poNumber
+            ,uc.name as companyName
+            ,uc2.name as userCompanyName
+        from mcl_material_adhoc_purchase_order_publish mi
+        inner join user_company uc
+        on mi.material_selling_comp_id = uc.id
+        inner join user_company uc2
+        on mi.comp_id = uc2.id
+        where mi.id = #{orderID}
+    </select>
+
+    <select id="searchCompanyBizRelation" resultType="vgo.mail.dto.CompanyBizRelationDto">
+        select
+             uc.name as companyName
+            ,uc2.name as userCompanyName
+        from comp_biz_relation mi
+        inner join user_company uc
+        on mi.biz_comp_id = uc.id
+        inner join user_company uc2
+        on mi.comp_register_id = uc2.id
+        where mi.id = #{companyBizRelationID}
+    </select>
+
+    <select id="searchCompanyBizRequest" resultType="vgo.mail.dto.CompanyBizRequestDto">
+        select
+             uc.name as requestCompany
+            ,uc2.name as responseCompany
+        from comp_biz_request mi
+        inner join user_company uc
+        on mi.request_comp_id = uc.id
+        inner join user_company uc2
+        on mi.response_comp_id = uc2.id
+        where mi.id = #{companyBizRequestID}
+    </select>
+
+    <select id="searchJoinInfo" resultType="vgo.mail.dto.JoinRequestDto">
+        select
+            upp.id, uc.name as companyName,
+            ui.full_name as userName,
+            ui.email as userEmail
+        from user_personal_pending upp
+        inner join user_company uc on uc.id=upp.comp_id
+        inner join user_info ui on ui.id=upp.user_id
+        where upp.id=#{id}
+        limit 1
+    </select>
+</mapper>

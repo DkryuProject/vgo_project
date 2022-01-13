@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vengine.batchjob.po.mapper.InvoiceMapper">
+    <select id="selectLatestPublishedDate" resultType="String">
+        select
+            boi.publishedOn
+        from buyer_order_invoice boi
+        where boi.status='Published'
+        and boi.comp_id = #{companyID}
+        order by boi.publishedOn desc
+        limit 1
+    </select>
+
+    <select id="selectLatestDraftedDate" resultType="String">
+        select
+            boi.draftedOn
+        from buyer_order_invoice boi
+        where boi.status='Drafted'
+        and boi.comp_id = #{companyID}
+        order by boi.draftedOn desc
+        limit 1
+    </select>
+
+    <select id="selectLatestRejectedDate" resultType="String">
+        select
+            boi.rejectedOn
+        from buyer_order_invoice boi
+        where boi.status='Rejected'
+        and boi.comp_id = #{companyID}
+        order by boi.rejectedOn desc
+        limit 1
+    </select>
+
+    <select id="selectInvoiceByInvoiceUid" resultType="vengine.batchjob.po.dto.InvoiceDto">
+        select
+        *
+        from buyer_order_invoice boi
+        where boi.invoiceUid = #{invoiceUid}
+        and boi.comp_id = #{companyID}
+    </select>
+
+    <select id="selectInvoiceByStatusAndInvoiceNumber" resultType="vengine.batchjob.po.dto.InvoiceDto">
+        select
+        *
+        from buyer_order_invoice boi
+        where boi.invoiceNumber = #{invoiceNumber}
+        and boi.status = #{status}
+        and boi.comp_id = #{companyID}
+        order by id desc
+    </select>
+
+    <insert id="insertInvoice" parameterType="vengine.batchjob.po.dto.InvoiceDto">
+        insert into buyer_order_invoice
+        (buyerOrderInfoId, invoiceURL, invoiceNumber, invoiceUid, shipmentDocumentUid, shipmentURL, draftedOn, publishedOn, status,
+        totalQuantity, totalMerchandiseAmount, totalAllowanceChargeAmount, totalTaxAmount, totalDocumentAmount, comp_id)
+        values(#{buyerOrderInfoId}, #{invoiceURL}, #{invoiceNumber}, #{invoiceUid}, #{shipmentDocumentUid}, #{shipmentURL}, #{draftedOn}, #{publishedOn}, #{status},
+        #{totalQuantity}, #{totalMerchandiseAmount}, #{totalAllowanceChargeAmount}, #{totalTaxAmount}, #{totalDocumentAmount}, #{companyID})
+    </insert>
+
+    <update id="updateInvoice" parameterType="vengine.batchjob.po.dto.InvoiceDto">
+        update buyer_order_invoice
+                set buyerOrderInfoId = #{buyerOrderInfoId}
+                      ,invoiceURL = #{invoiceURL}
+                      ,invoiceUid = #{invoiceUid}
+                      ,invoiceNumber = #{invoiceNumber}
+                      ,shipmentDocumentUid = #{shipmentDocumentUid}
+                      ,shipmentURL = #{shipmentURL}
+                      ,draftedOn = #{draftedOn}
+                      ,publishedOn = #{publishedOn}
+                      ,status = #{status}
+                      ,totalQuantity = #{totalQuantity}
+                      ,totalMerchandiseAmount = #{totalMerchandiseAmount}
+                      ,totalAllowanceChargeAmount = #{totalAllowanceChargeAmount}
+                      ,totalTaxAmount = #{totalTaxAmount}
+                      ,totalDocumentAmount =#{totalDocumentAmount}
+        where id=#{id}
+    </update>
+
+    <update id="rejectedInvoice" parameterType="vengine.batchjob.po.dto.InvoiceDto">
+        update buyer_order_invoice
+                set rejectedOn = #{rejectedOn}
+                      ,status = #{status}
+                      ,rejectedReferenceDocumentType = #{rejectedReferenceDocumentType}
+                      ,rejectedReferenceDocumentId = #{rejectedReferenceDocumentId}
+                      ,rejectedReferenceDocumentNote = #{rejectedReferenceDocumentNote}
+                      ,rejectedReferenceDocumentUrl = #{rejectedReferenceDocumentUrl}
+        where id=#{id}
+    </update>
+</mapper>

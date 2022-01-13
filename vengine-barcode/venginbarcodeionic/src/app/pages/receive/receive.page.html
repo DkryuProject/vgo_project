@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{companyName}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let inwarehousing of receive; let i = index" (click)="movePage(inwarehousing)">
+      <ion-label>
+        <h2>{{inwarehousing.inWareHousingNumber}} {{inwarehousing.inWareHousingDate}} {{inwarehousing.supplier}}</h2>
+        <h3>{{inwarehousing.item}}/{{inwarehousing.style}}/{{inwarehousing.color}}/{{inwarehousing.size}}</h3>
+        <h3>{{inwarehousing.packingQuantity}}{{inwarehousing.packingMeasurement}} {{inwarehousing.unitQuantity}}{{inwarehousing.unitMeasurement}}</h3>
+        <h3 style="color: red;" *ngIf="viewType != 'scan' && inwarehousing.goodsReceipt">{{inwarehousing.goodsReceipt.totalPackingQuantity}}{{inwarehousing.goodsReceipt.packingMeasurement}} {{inwarehousing.goodsReceipt.totalUnitTotalQuantity}}{{inwarehousing.goodsReceipt.unitMeasurement}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

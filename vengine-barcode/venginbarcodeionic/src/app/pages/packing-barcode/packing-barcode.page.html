@@ -1,0 +1,17 @@
+<ion-content [class]="ionContentClass">
+  <ion-card>
+    <ion-item lines="none">
+      <ion-input autofocus="true" type="text" [(ngModel)]="barcodeValue" (keyup.enter)="barcodeInput($event)" autocomplete="off" autocorrect="off"></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-grid class="ion-justify-content-center">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-button shape="round" size="large" (click)="sendData()">
+          {{barcodeData.length}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

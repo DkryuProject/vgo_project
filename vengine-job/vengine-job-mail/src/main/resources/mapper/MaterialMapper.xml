@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vgo.mail.mapper.MaterialMapper">
+    <select id="searchMaterialList" resultType="vgo.mail.dto.MaterialDto">
+        select
+            mi.supplier_comp_id as supplierCompanyID
+           ,(select name from user_company uc where uc.id=mi.supplier_comp_id) as supplierCompany
+           ,mi.comp_id as registerCompanyID
+           ,(select name from user_company uc where uc.id=mi.comp_id) as registerCompany
+           ,max(item_name) as materialName
+           ,count(*) as cnt
+        from material_info mi
+        where mi.del_flag='N'
+        and mi.created_at >= date_sub(now(), interval 1 day)
+        group by mi.supplier_comp_id, mi.comp_id
+        order by supplier_comp_id
+    </select>
+
+    <select id="searchCompanyUsers" resultType="string">
+        select
+        	ui.email
+        from user_info ui
+        where ui.comp_id =#{companyID}
+        and ui.status = 'A'
+    </select>
+</mapper>

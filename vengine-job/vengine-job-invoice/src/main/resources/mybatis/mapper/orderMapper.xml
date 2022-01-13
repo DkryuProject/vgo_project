@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vengine.batchjob.invoice.mapper.OrderMapper">
+    <select id="searchBuyerApiInfo" resultType="vengine.batchjob.invoice.dto.BuyerApiInfoDto">
+        select
+             comp_id as company
+            ,user_id as apiUserId
+            ,accessKeyId
+            ,dataKey
+            ,secretAccessKey
+        from buyer_api_info bai
+    </select>
+
+    <select id="selectByStatusAndOrderStatusCodeAndDocumentRefNumber" resultType="vengine.batchjob.invoice.dto.OrderDto">
+        select
+        *
+        from buyer_order_info boi
+        where boi.status = #{status}
+        and boi.orderStatusCode = #{orderStatus}
+        and boi.documentRefNumber = #{documentRefNumber}
+        and boi.comp_id = #{companyID}
+    </select>
+
+    <select id="selectOrderItems" resultType="vengine.batchjob.invoice.dto.OrderItemDto">
+        select
+        *
+        from buyer_order_item boi
+        where boi.buyerOrderInfoId = #{orderId}
+        and boi.comp_id = #{companyID}
+    </select>
+
+    <update id="updateOrderInfo" parameterType="vengine.batchjob.invoice.dto.OrderDto">
+        update buyer_order_info set
+                     shipmentUrl = #{shipmentUrl}
+                    ,finishedOn = #{finishedOn}
+                    ,status= #{status}
+                    ,orderStatusCode = #{orderStatusCode}
+                    ,shipmentQuantity = #{shipmentQuantity}
+        where id = #{id}
+    </update>
+</mapper>

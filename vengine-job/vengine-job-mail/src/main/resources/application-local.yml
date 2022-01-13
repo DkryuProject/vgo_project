@@ -1,0 +1,49 @@
+logging:
+  level:
+    root: debug
+  file:
+    path: D:/log
+
+spring:
+  datasource:
+    #Real DB
+    #url: jdbc:mysql://18.141.10.8:3306/vgodb?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&autoReconnection=true
+    #username: devmysql
+    #password: VgoDhg0520
+    #Dev DB
+    url: jdbc:mysql://52.78.175.70:3306/vgodev?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&autoReconnection=true
+    username: devmysql
+    password: Devmysql1234!
+    #Demo DB1
+    #url: jdbc:mysql://3.36.122.169:3306/vgodev_modify?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&autoReconnection=true
+    #username: devmysql
+    #password: Devmysql1234!
+    #Local DB
+    #url: jdbc:mysql://localhost:3306/venginedb?characterEncoding=UTF-8&serverTimezone=UTC
+    #username: root
+    #password: Daehan12!@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  batch:
+    job:
+      enabled: false
+    initialize-schema: never
+
+mybatis:
+  type-aliases-package: vgo.mail.mapper
+  mapper-locations: mapper/*.xml
+
+notification:
+  mattermost:
+    enabled: false # mmSender를 사용할 지 여부, false면 알림이 오지 않는다
+    webhook-url: https://hooks.slack.com/services/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 # 위의 Webhook URL을 기입
+    channel: vengine_dev # 기본 설정한 채널이 아닌 다른 채널로 보내고 싶을 때 기입한다
+    preText: Local Mail Batch Error
+
+vengine:
+  api:
+    url: http://localhost:8080
+  web:
+    url: http://localhost

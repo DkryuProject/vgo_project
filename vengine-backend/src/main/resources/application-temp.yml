@@ -1,0 +1,89 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:log4jdbc:mysql://localhost:3306/vgodev_material?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&autoReconnection=true
+    username: devmysql
+    password: Devmysql1234!
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    connection-test-query: SELECT NOW() FROM dual
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    properties:
+      hibernate:
+        #dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        default_batch_fetch_size: 1000
+        dialect: io.vengine.api.config.MysqlDialectCustom
+        type:
+          show_sql: true
+          format_sql: true
+          use_sql_comments: false
+      org:
+        hibernate:
+          envers:
+            audit_table_prefix: vhistory_
+            #              audit_table_suffix: _history
+            revision_field_name: REVISION_ID
+            revision_type_field_name: REVISION_TYPE
+            store_date_at_delete: true
+  url:
+    base: http://localhost:8080
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 215MB
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    date-format: yyyy-MM-dd
+    time-zone: Asia/Seoul
+domain:
+  check: gmail,daum,naver,paran,empal
+admin:
+  mail: support@v-go.io
+file:
+  upload-dir: /home/ubuntu/vengine/upload/
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIASV2MSHUC4FQSVKGR
+      secretKey: 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
+    s3:
+      bucket: vengin-images
+      excel : vgo-data/excel-data
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+api:
+  url: http://localhost:8080
+
+notification:
+  mattermost:
+    enabled: true # mmSender를 사용할 지 여부, false면 알림이 오지 않는다
+    webhook-url: https://hooks.slack.com/services/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 # 위의 Webhook URL을 기입
+    channel: vengine_dev # 기본 설정한 채널이 아닌 다른 채널로 보내고 싶을 때 기입한다
+    preText: V-go Temp Error
+
+#Logging Setting
+logging:
+  file:
+    name:  /home/ubuntu/vengine/log/vengine/vgo.log
+  level:
+    org.springframework.web: error
+    org.springframework.security: off
+    java.sql: error
+    jdbc: off
+    jdbc.sqlonly: off
+    jdbc.sqltiming: error
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.resultsettable: error
+    jdbc.connection: error

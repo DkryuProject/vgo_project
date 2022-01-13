@@ -1,0 +1,7 @@
+{
+  "name": "vengine-barcode",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

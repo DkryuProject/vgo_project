@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: Manrope, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.625rem;
+    src: local(Verdana);
+}
+
+@font-face {
+    font-family: Manrope, Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: 0.625rem;
+    src: local(Verdana);
+}
+
+body {
+    margin: 0;
+    font-family: Manrope, Verdana, Geneva, Tahoma, sans-serif;
+
+    /* font-family: 'Nanum Gothic'; */
+
+    /* font-family: "CookieRunOTF", "San Francisco", "Helvetica Neue", "Segoe UI",
+        "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif, -apple-system, BlinkMacSystemFont; */
+    font-size: 0.625rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* -webkit-app-region: drag; */
+    /* overflow-y: hidden; */
+}
+
+/*  */
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix)
+            format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2)
+            format('woff2'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff)
+            format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf)
+            format('truetype');
+}
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot);
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix)
+            format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2)
+            format('woff2'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff)
+            format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf)
+            format('truetype');
+}
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 800;
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.eot);
+    src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.eot?#iefix)
+            format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.woff2)
+            format('woff2'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.woff)
+            format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.ttf)
+            format('truetype');
+}
+/* */
+
+/* button {
+    -webkit-app-region: no-drag;
+}
+*/
+/* .titlebar {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+} */
+
+/* code {
+    font-family: 'Manrope', 'Verdana', 'SFMono-Regular', Consolas,
+        'Liberation Mono', Menlo, Courier, monospace;
+} */
+
+.editable-cell {
+    position: relative;
+}
+
+.editable-cell-value-wrap {
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+}
+
+[data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #434343;
+}
+
+.ant-select-selection-item {
+    font-size: 0.625rem;
+}
+
+.ant-select-item-option-content {
+    font-size: 0.625rem;
+}
+
+.ant-menu.ant-menu-sub.ant-menu-vertical li a {
+    font-size: 0.625rem;
+}
+
+.ant-table-cell {
+    vertical-align: top;
+}
+
+/* .ant-menu.ant-menu-sub.ant-menu-inline {
+    background-color: #418b8b;
+} */

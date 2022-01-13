@@ -1,0 +1,28 @@
+<ion-content>
+  <ion-grid class="ion-justify-content-center">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-card routerDirection="forward" (click)="movePage('packed')" style="--background:red;">
+          <ion-card-content>
+            <ion-icon name="scan" style="zoom:2.0;"></ion-icon>
+            <ion-label>
+              <h3>Packed</h3>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-card routerDirection="forward" (click)="movePage('shiped')" style="--background:green;">
+          <ion-card-content>
+            <ion-icon name="scan" style="zoom:2.0;"></ion-icon>
+            <ion-label>
+              <h3>Shiped</h3>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

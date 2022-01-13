@@ -1,0 +1,137 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{scanTitle}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="receiveData">
+    <ion-card (click)="changeReceiveData()">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label>
+            <div *ngIf="scanType == 'BARCODE_REGISTER'; else elseBarcedeMove">
+              <h3>No: {{receiveData.deliveryNumber}}</h3>
+              <h3>Date: {{receiveData.deliveryDate}}</h3>
+              <h3>Supplier: {{receiveData.supplier}}</h3>
+              <h3>Spec: {{receiveData.item}}/{{receiveData.style}}/{{receiveData.color}}/{{receiveData.size}}</h3>
+              <h3>Receive Qty: {{receiveData.packingQuantity}} {{receiveData.packingMeasurement}} / {{receiveData.unitQuantity}} {{receiveData.unitMeasurement}}</h3>
+            </div>
+            <ng-template #elseBarcedeMove>
+              <h3>Spec: {{receiveData.item}}/{{receiveData.style}}/{{receiveData.color}}/{{receiveData.size}}</h3>
+              <h3>Qty: {{goodsMoveData.totalUnitTotalQuantity}} {{goodsMoveData.unitMeasurement}}</h3>
+            </ng-template>
+          </ion-label>
+          <ion-badge slot="end" *ngIf="barcodeList.length > 0">{{barcodeList.length}} {{receiveData.packingMeasurement}}</ion-badge>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="(scanType == 'BARCODE_LOCATION_REGISTER')">
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none">
+          <div *ngIf="locationData == null; else elseLocation">
+            <ion-label>
+              <h3>상품을 저장할 위치를 스캔하세요..</h3>
+            </ion-label>
+          </div>
+          <ng-template #elseLocation>
+            <div *ngIf="barcodeList.length > 0; else elseBacodeEmpty">
+              <ion-item lines="none">
+                <ion-label *ngIf="locationData">
+                  <h3>{{locationData.barcodeText}}</h3>
+                  <h3>{{locationData.description}}</h3>
+                </ion-label>
+                <ion-badge slot="end">{{barcodeList.length}}</ion-badge>
+              </ion-item>
+            </div>
+            <ng-template #elseBacodeEmpty>
+              <ion-label *ngIf="locationData">
+                <h3>{{locationData.barcodeText}}</h3>
+                <h3>{{locationData.description}}</h3>
+                <h3>바코드 스캔하세요...</h3>
+              </ion-label>
+            </ng-template>
+          </ng-template>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="(scanType == 'BARCODE_OUT' && goodsReceiptData)">
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Spec: {{goodsReceiptData.delivery.item}}/{{goodsReceiptData.delivery.style}}/{{goodsReceiptData.delivery.color}}/{{goodsReceiptData.delivery.size}}</h3>
+            <h3>Qty: {{remainPackingQuantity}} {{goodsReceiptData.packingMeasurement}} / {{remainUnitQuantity}} {{goodsReceiptData.unitMeasurement}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
+</ion-header>
+
+<ion-footer *ngIf="(scanType == 'BARCODE_REGISTER' || scanType == 'BARCODE_MOVE')">
+  <ion-toolbar *ngIf="(scanType == 'BARCODE_REGISTER')">
+    <ion-item>
+      <ion-label position="stacked">Total Unit Quantity<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" [(ngModel)]="goodsReceiptQuantity"></ion-input>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="saveData('GR')">
+          <ion-icon name="save-outline"></ion-icon>
+          <ion-label>입고</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="saveData('DGI')">
+          <ion-icon name="save-outline"></ion-icon>
+          <ion-label>직출고</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+<ion-footer *ngIf="(scanType == 'BARCODE_LOCATION_REGISTER')">
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="updateLocation()">
+          <ion-icon name="save-outline"></ion-icon>
+          <ion-label>위치 지정</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+<ion-footer *ngIf="(scanType == 'BARCODE_OUT')">
+  <ion-toolbar>
+    <ion-item>
+      <ion-label position="stacked">Total Unit Quantity<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="goodsIssueQuantity"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Style<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="goodsIssueStyle"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Plant<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="goodsIssuePlant"></ion-input>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="saveData('GI')">
+          <ion-icon name="save-outline"></ion-icon>
+          <ion-label>출고</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" />
+</head>
+<body>
+<table style="margin-left: auto; margin-right: auto; border: 1px solid black;">
+    <tr>
+        <td style="height: 180px;">&nbsp;
+            <img src="https://vgo-data.s3.ap-northeast-2.amazonaws.com/vgo_top.png">
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:0 10px 0 10px" th:utext="${mail_body}"></td>
+    </tr>
+    <tr style="height: 50px;">
+        <td style="text-align: center; ">
+            <a href="http://www.v-go.io"><img src="https://vgo-data.s3.ap-northeast-2.amazonaws.com/button.png"></a>
+        </td>
+    </tr>
+    <tr style="height: 100px;">
+        <td style="padding:0 10px 0 10px;">
+            <div>Hope you’ll join us.</div>
+            <div>The Vgo Team</div>
+            <div>Questions? We’re here to help. <a href="mailto:support@v-go.io"><i>support@v-go.io</i></a></div>
+        </td>
+    </tr>
+    <tr>
+        <td style="height: 100px;">&nbsp;
+            <img src="https://vgo-data.s3.ap-northeast-2.amazonaws.com/vgo_bottom.png">
+        </td>
+    </tr>
+</table>
+</body>
+</html>

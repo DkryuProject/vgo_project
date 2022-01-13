@@ -1,0 +1,15 @@
+server:
+  port: 9002
+
+spring:
+  profiles:
+    active: local
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:  health, info, prometheus
+  metrics:
+    tags:
+      application: vgo

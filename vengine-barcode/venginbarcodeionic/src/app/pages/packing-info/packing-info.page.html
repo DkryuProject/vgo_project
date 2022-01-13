@@ -1,0 +1,149 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-card>
+      <ion-item lines="none">
+        <strong>{{docNo}}</strong>
+      </ion-item>
+    </ion-card>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-justify-content-center">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('front')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Front</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="frontPhoto" [src]="frontPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('back')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Back</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="backPhoto" [src]="backPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('right')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Right</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="rightPhoto" [src]="rightPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('left')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Left</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="leftPhoto" [src]="leftPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('beforeLoading')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Loading Before</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="beforeLoadingPhoto" [src]="beforeLoadingPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('halfLoading')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Half Loading</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="halfLoadingPhoto" [src]="halfLoadingPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('fullLoading')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Full Loading</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="fullLoadingPhoto" [src]="fullLoadingPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('closeDoor')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Close Door</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="closeDoorPhoto" [src]="closeDoorPhoto" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('seal1')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Seal</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="sealPhoto1" [src]="sealPhoto1" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6">
+        <ion-card class="img-wrapper" button (click)="takePhoto('seal2')">
+          <ion-card-header>
+            <ion-card-subtitle text-center>Seal</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-thumbnail>
+              <img *ngIf="sealPhoto2" [src]="sealPhoto2" />
+            </ion-thumbnail>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="uploadFile()">
+          <ion-icon name="save-outline"></ion-icon>
+          <ion-label>Upload</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,41 @@
+logging:
+  level:
+    root: info
+  file:
+    path: /home/ubuntu/vengine/log/batch
+spring:
+  datasource:
+    #url: jdbc:mysql://3.35.0.176:3306/vengineDevDB?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://172.31.20.37:3306/vengineDevDB?characterEncoding=UTF-8&serverTimezone=UTC
+    username: devmysql
+    password: Devmysql1234!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    connection-test-query: SELECT NOW() FROM dual
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  batch:
+    job:
+      enabled: false
+    initialize-schema: always
+vengine:
+  api:
+    url: http://localhost:8080
+
+infornexus:
+  filePath: /home/ubuntu/vengine
+  userId: DataApiAgent@5717989018134634
+  accessKey: 1004ge1Z8booancsZj
+  secretKey: 6oxqsvvkoxbwjt6pye5jbldmu7zludr24gtczbivbzl3x6ewped5p46p53obb624ect3xtrohldjacnzdite3a5iewfrvh6fgvwsm7i
+  dataKey: 7ba20386b4a975e59e143c2e5e3bc70b410cda59
+
+mybatis:
+  type-aliases-package: vengine.batchjob.invoice.mapper
+  mapper-locations: mybatis/mapper/*.xml
+
+notification:
+  mattermost:
+    enabled: true # mmSender를 사용할 지 여부, false면 알림이 오지 않는다
+    webhook-url: https://hooks.slack.com/services/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 # 위의 Webhook URL을 기입
+    channel: vengine_dev # 기본 설정한 채널이 아닌 다른 채널로 보내고 싶을 때 기입한다
+    preText: Vgo Dev Invoice Batch Error

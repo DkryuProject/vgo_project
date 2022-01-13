@@ -1,0 +1,10 @@
+0 */3 * * * root /usr/bin/python3 /root/files/okfashion_news.py >> /root/logs/okfashion_news_`date "+\%Y\%m\%d"`.log 2>&1
+10 */3 * * * root /usr/bin/python3 /root/files/apn_news.py >> /root/logs/apn_news_`date "+\%Y\%m\%d"`.log 2>&1
+20 */3 * * * root /usr/bin/python3 /root/files/fashionbiz_news.py >> /root/logs/fashionbiz_news_`date "+\%Y\%m\%d"`.log 2>&1
+30 */3 * * * root /usr/bin/python3 /root/files/fashionInsight_news.py >> /root/logs/fashionInsight_news_`date "+\%Y\%m\%d"`.log 2>&1
+40 */3 * * * root /usr/bin/python3 /root/files/itnk_news.py >> /root/logs/itnk_news_`date "+\%Y\%m\%d"`.log 2>&1
+50 */3 * * * root /usr/bin/python3 /root/files/ktnews_news.py >> /root/logs/ktnews_news_`date "+\%Y\%m\%d"`.log 2>&1
+0 */1 * * * root /usr/bin/python3 /root/files/word_cloud.py >> /root/logs/word_cloud_`date "+\%Y\%m\%d"`.log 2>&1
+
+
+#* * * * * root /usr/bin/python3 /root/files/test.py >> /root/logs/test.log 2>&1
